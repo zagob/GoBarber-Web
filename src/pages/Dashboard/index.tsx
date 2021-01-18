@@ -40,6 +40,8 @@ interface Appointment {
 }
 
 const Dashboard: React.FC = () => {
+  const { signOut, user } = useAuth();
+
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [currentMonth, setCurrentMonth] = useState(new Date());
 
@@ -67,7 +69,7 @@ const Dashboard: React.FC = () => {
     }).then(response => {
       setMonthAvailability(response.data);
     })
-  }, [currentMonth, user.id]);
+  }, [user.id, currentMonth]);
 
   //carregar os agendamentos
   useEffect(() => {
@@ -130,8 +132,6 @@ const Dashboard: React.FC = () => {
       isAfter(parseISO(appointment.date), new Date()),
     )
   }, [appointments]);
-
-  const { signOut, user } = useAuth();
 
   return (
     <Container>
