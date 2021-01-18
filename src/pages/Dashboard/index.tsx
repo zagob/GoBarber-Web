@@ -67,7 +67,7 @@ const Dashboard: React.FC = () => {
     }).then(response => {
       setMonthAvailability(response.data);
     })
-  }, [currentMonth]);
+  }, [currentMonth, user.id]);
 
   //carregar os agendamentos
   useEffect(() => {
